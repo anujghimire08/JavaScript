@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odd/Even Checker</title>
+  </head>
+  <body>
+    <h1>Odd/Even Checker</h1>
+    <input type="number" min="0" id="input" />
+    <button id="check" onclick="check()">Check</button>
+    <p id="result"></p>
+    <script>
+      const inputEL = document.getElementById("input");
+      const checkBtnEL = document.getElementById("check");
+      const ResultEL = document.getElementById("result");
+      function check() {
+        let userInput = Number(inputEL.value);
+        if (userInput === "") return;
+        userInput % 2 === 0
+          ? (ResultEL.innerText = "Even Number")
+          : (ResultEL.innerText = "Odd Number");
+      }
+    </script>
+  </body>
+</html>
