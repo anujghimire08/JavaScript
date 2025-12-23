@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Converter</title>
+  </head>
+  <body>
+    <input
+      type="number"
+      name="value"
+      id="value"
+      placeholder="Enter Value"
+      required
+      min="1"
+    />
+    <input type="text" name="result" id="result" readonly />
+    <button id="toF" onclick="toC()">To C</button>
+    <button id="toC" onclick="toF()">To F</button>
+  </body>
+  <script>
+    const valueEL = document.getElementById("value");
+    const resultEL = document.getElementById("result");
+    const toFEL = document.getElementById("toF");
+    const toCEL = document.getElementById("toC");
+    function toC() {
+      const value = Number(valueEL.value);
+      const result = ((value - 32) / 1.8).toFixed(2);
+      resultEL.value = result;
+      value = "";
+    }
+    function toF() {
+      const value = Number(valueEL.value);
+      const result = (value * 1.8 + 32).toFixed(2);
+      resultEL.value = result;
+      value = "";
+    }
+  </script>
+</html>
