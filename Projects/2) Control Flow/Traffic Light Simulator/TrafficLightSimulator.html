@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Light Simulator</title>
+  </head>
+  <style>
+    .light-container {
+      width: 100px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.8rem;
+      background-color: black;
+      padding: 0.6rem 0;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: aliceblue;
+      border: none;
+    }
+  </style>
+  <body>
+    <div
+      style="
+        background-color: black;
+        width: 20px;
+        height: 50px;
+        margin-left: 2.5rem;
+      "
+    ></div>
+    <div class="light-container">
+      <button id="red"></button>
+      <button id="yellow"></button>
+      <button id="green"></button>
+    </div>
+    <div
+      style="
+        background-color: black;
+        width: 20px;
+        height: 50px;
+        margin-left: 2.5rem;
+      "
+    ></div>
+    <script>
+      const red = document.getElementById("red");
+      const yellow = document.getElementById("yellow");
+      const green = document.getElementById("green");
+      let color = "red";
+      red.style.backgroundColor = "red";
+      setInterval(() => {
+        if (color === "red") {
+          color = "yellow";
+          red.style.backgroundColor = "grey";
+          green.style.backgroundColor = "grey";
+          yellow.style.backgroundColor = "yellow";
+        } else if (color === "yellow") {
+          color = "green";
+          red.style.backgroundColor = "grey";
+          yellow.style.backgroundColor = "grey";
+          green.style.backgroundColor = "green";
+        } else if (color === "green") {
+          color = "red";
+          green.style.backgroundColor = "grey";
+          yellow.style.backgroundColor = "grey";
+          red.style.backgroundColor = "red";
+        }
+      }, 2500);
+    </script>
+  </body>
+</html>
