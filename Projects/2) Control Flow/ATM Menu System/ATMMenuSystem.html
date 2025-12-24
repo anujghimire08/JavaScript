@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATM Menu System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .container {
+      width: 250px;
+      height: auto;
+      background-color: white;
+      border: 2px solid black;
+      padding: 1.5rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-direction: column;
+      position: relative;
+    }
+    i {
+      font-size: 1rem;
+      font-weight: 600;
+      position: absolute;
+    }
+    .onff {
+      top: 0.3rem;
+      right: 0.2rem;
+    }
+    .onff:active,
+    .customercare:active {
+      transform: scale(0.95);
+      color: blue;
+    }
+    .customercare {
+      right: 0.2rem;
+      bottom: 0.3rem;
+    }
+    textarea {
+      height: 6rem;
+      font-size: 1rem;
+      padding: 0.3rem;
+      resize: none;
+      overflow-wrap: break-word;
+      user-select: none;
+      pointer-events: none;
+    }
+    button {
+      padding: 1rem 1.1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <i class="ri-shut-down-line onff" onclick="onoff()"></i>
+      <i
+        class="ri-customer-service-2-line customercare"
+        title="We'll Call back Asap"
+      ></i>
+      <textarea id="input" readonly></textarea>
+      <div class="buttons">
+        <button onclick="operation(1)">1</button>
+        <button onclick="operation(2)">2</button>
+        <button onclick="operation(3)">3</button>
+        <button onclick="operation(4)">4</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const inpulEL = document.getElementById("input");
+    let on = false;
+    function onoff() {
+      on = true;
+      setTimeout(() => {
+        inpulEL.value =
+          "System Opening.....\n1)Check Balance\n2)Withdraw\n3)Deposit\n4)Exit";
+      }, 1000);
+      inpulEL.value = "System Opening.....";
+    }
+    let balance = 100000;
+    const userChoice = Number(inpulEL.value);
+
+    function operation(userChoice) {
+      if (!on) {
+        return;
+      }
+      switch (userChoice) {
+        case 1: {
+          inpulEL.value = `Current Balance Rs.${balance}`;
+          break;
+        }
+        case 2: {
+          balance -= 10000;
+          inpulEL.value = `Rs.${10000} Withdraw\nCurrent Balance Rs.${balance}`;
+          break;
+        }
+        case 3: {
+          balance += 10000;
+          inpulEL.value = `Rs.${10000} Deposited\nCurrent Balance Rs.${balance}`;
+          break;
+        }
+        case 4: {
+          setTimeout(() => {
+            inpulEL.value = "";
+          }, 1000);
+          inpulEL.value = "System Closing......";
+        }
+      }
+    }
+  </script>
+</html>
