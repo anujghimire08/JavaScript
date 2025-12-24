@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <h1>Quiz App</h1>
+    <button onclick="start()">Start Quiz</button>
+    <div id="container"></div>
+    <p id="points"></p>
+    <script>
+      const container = document.getElementById("container");
+      const point = document.getElementById("points");
+      let score = 0;
+      const questions = [
+        {
+          question:
+            "Who became the first athlete from Nepal to win a medal at the Paralympic Games?",
+          option1: "Sabitra Samba",
+          option2: "Palesha Goverdhan",
+          option3: "Gaurika Singh",
+          option4: "Puja Rana Magar",
+          answer: "Palesha Goverdhan",
+        },
+        {
+          question:
+            "In which year did Nepal first participate in the Olympic Games?",
+          option1: "1962",
+          option2: "1964",
+          option3: "1966",
+          option4: "1968",
+          answer: "1964",
+        },
+        {
+          question:
+            "At which major regional sports event did Gaurika Singh win four gold medals for Nepal in swimming?",
+          option1: "Asian Games",
+          option2: "Commonwealth Games",
+          option3: "South Asian Games",
+          option4: "Olympic Games",
+          answer: "South Asian Games",
+        },
+      ];
+
+      let currentindex = 0;
+
+      function start() {
+        let containerHTML = "";
+        if (currentindex < questions.length) {
+          containerHTML += `<h3>
+        Question:<em
+          >${questions[currentindex].question}</em
+        >
+        </h3>
+        <div class="options">
+          <button onclick="anscheck('${questions[currentindex].option1}')">${questions[currentindex].option1}</button> &nbsp;
+          <button onclick="anscheck('${questions[currentindex].option2}')">${questions[currentindex].option2}</button>&nbsp;
+          <button onclick="anscheck('${questions[currentindex].option3}')">${questions[currentindex].option3}</button>&nbsp;
+          <button onclick="anscheck('${questions[currentindex].option4}')">${questions[currentindex].option4}</button> &nbsp;
+        </div>`;
+          container.innerHTML = containerHTML;
+        } else {
+          if (score < 1) {
+            container.innerHTML = `<h2>Quiz Finished!</h2><p>Your score: ${score}/${questions.length} 😔</p>`;
+          } else {
+            container.innerHTML = `<h2>Quiz Finished!</h2><p>Your score: ${score}/${questions.length} 🙂</p>`;
+          }
+        }
+      }
+
+      function anscheck(ans) {
+        if (ans === questions[currentindex].answer) {
+          score++;
+        }
+        currentindex++;
+        start();
+      }
+    </script>
+  </body>
+</html>
