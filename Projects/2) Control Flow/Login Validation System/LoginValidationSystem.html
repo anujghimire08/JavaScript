@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Validation System</title>
+  </head>
+  <body>
+    <h1>Login Validation System</h1>
+    <form method="post">
+      <input type="text" name="username" id="username" />
+      <input type="password" name="password" id="password" />
+      <input type="button" value="Login" onclick="checkValid()" />
+    </form>
+    <p id="message"></p>
+    <br /><br /><br />
+    <b><u>to check login Successful use below details:</u></b>
+    <p><mark>username:</mark> abc or xyz</p>
+    <p><mark>password</mark>: abc123 or xyz123</p>
+    <script>
+      const message = document.getElementById("message");
+      function checkValid() {
+        const name = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const userData = [
+          { name: "abc", password: "abc123" },
+          { name: "xyz", password: "xyz123" },
+        ];
+
+        if (!name || !password) {
+          message.textContent = "Fill Your Details";
+          message.style.color = "red";
+          return;
+        }
+
+        if (name && password) {
+          if (password.length < 6) {
+            message.textContent = "Password must be at least or more than 6";
+            message.style.color = "red";
+            return;
+          }
+        }
+        const user = userData.find(
+          (u) => u.name === name && u.password === password
+        );
+        if (user) {
+          message.style.color = "green";
+          message.textContent = "Login Successful";
+        } else {
+          message.style.color = "red";
+          message.textContent = "Login Unsuccessful";
+        }
+      }
+    </script>
+  </body>
+</html>
