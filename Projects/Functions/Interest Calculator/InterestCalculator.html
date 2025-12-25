@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interest Calculator</title>
+  </head>
+  <body>
+    <h1>Simple Interest Calculator</h1>
+    <input type="number" name="" id="principle" min="0" />
+    <input type="number" name="" id="time" />
+    <input type="number" name="" id="rate" />
+    <button id="calculate" onclick="interestCalculator()">Calculate</button>
+    <p id="result"></p>
+    <script>
+      function interestCalculator() {
+        const principle = Number(document.getElementById("principle").value);
+        const time = Number(document.getElementById("time").value);
+        const rate = Number(document.getElementById("rate").value);
+        document.getElementById("result").textContent = `Your Interest is Rs.${
+          (principle * time * rate) / 100
+        }`;
+      }
+    </script>
+  </body>
+</html>
