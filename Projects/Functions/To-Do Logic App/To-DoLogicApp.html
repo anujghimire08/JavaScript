@@ -20,11 +20,11 @@
       function addtask() {
         const listContainer = document.getElementById("todoList");
         listContainer.innerHTML = "";
-        for (let i = 0; i < lists.length; i++) {
+        lists.forEach((item) => {
           const li = document.createElement("li");
-          li.textContent = `${lists[i]}`;
-          todoList.appendChild(li);
-        }
+          li.textContent = `${item}`;
+          listContainer.appendChild(li);
+        });
       }
 
       function todo() {
