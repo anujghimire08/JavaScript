@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback-based Timer</title>
+  </head>
+  <body>
+    <h1>Countdown Timer</h1>
+    <input type="number" id="inputTime" placeholder="Enter Seconds" />
+    <button id="startBtn" onclick="start()">Start</button>
+    <button id="pauseBtn" onclick="pause()">Pause</button>
+    <button id="resetBtn" onclick="reset()">Reset</button>
+    <h2 id="display">0</h2>
+    <script>
+      let timer;
+      let userTime;
+      function start() {
+        userTime = parseInt(document.getElementById("inputTime").value);
+        document.getElementById("display").textContent = userTime;
+        timer = setInterval(() => {
+          if (userTime > 0) {
+            userTime--;
+            update(userTime);
+          } else {
+            clearInterval(timer);
+            timeup();
+          }
+        }, 1000);
+      }
+      function pause() {
+        clearInterval(timer);
+      }
+      function reset() {
+        clearInterval(timer);
+        userTime = 0;
+        document.getElementById("display").textContent = userTime;
+        update(userTime);
+        document.getElementById("inputTime").value = "";
+      }
+      function update(time) {
+        document.getElementById("display").textContent = time;
+      }
+      function timeup() {
+        alert("Time Over!");
+      }
+    </script>
+  </body>
+</html>
