@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Marks System</title>
+  </head>
+  <body>
+    <h1>Student Marks System</h1>
+    <section id="add-student">
+      <form id="studentDatas">
+        <input
+          type="text"
+          id="sname"
+          placeholder="Enter Student Name"
+          min="0"
+        />
+        <input type="number" id="dsa" placeholder="DSA - Java Mark" min="0" />
+        <input
+          type="number"
+          id="mp"
+          placeholder="Microprocessor Mark"
+          min="0"
+        />
+        <input
+          type="number"
+          id="web"
+          placeholder="Web Development Mark"
+          min="0"
+        />
+        <input type="number" id="fa" placeholder="F.Accounting Mark" min="0" />
+        <input type="number" id="bs" placeholder="B.Statistic Mark" min="0" />
+        <input type="button" value="Send" onclick="store()" />
+      </form>
+    </section>
+    <script>
+      const sName = document.getElementById("sname");
+      const dsa = document.getElementById("dsa");
+      const mp = document.getElementById("mp");
+      const web = document.getElementById("web");
+      const fa = document.getElementById("fa");
+      const bs = document.getElementById("bs");
+      let StudentName = [];
+      let SubjectsMarks = [];
+      function store() {
+        const studentName = sName.value;
+        const dsaMark = dsa.value;
+        const mpMark = mp.value;
+        const webMark = web.value;
+        const faMark = fa.value;
+        const bsMark = bs.value;
+        StudentName.push(studentName);
+        SubjectsMarks.push();
+        SubjectsMarks.push({ dsaMark, mpMark, webMark, faMark, bsMark });
+        document.getElementById("studentDatas").reset();
+        // document
+        //   .querySelectorAll("#sname,#dsa, #mp, #web, #fa, #bs ")
+        //   .forEach((input) => {
+        //     input.value = "";
+        //   });
+      }
+    </script>
+  </body>
+</html>
