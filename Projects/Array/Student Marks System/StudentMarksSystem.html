@@ -31,7 +31,30 @@
         <input type="number" id="fa" placeholder="F.Accounting Mark" min="0" />
         <input type="number" id="bs" placeholder="B.Statistic Mark" min="0" />
         <input type="button" value="Send" onclick="store()" />
+        <input type="button" value="Result" onclick="display()" />
       </form>
+      <br />
+      <br />
+      <br />
+      <table frame="box" rules="all" cellpadding="5">
+        <caption>
+          Student Results
+        </caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Data Structure & Algorithm</th>
+            <th>Microprocessor</th>
+            <th>Web Development-I</th>
+            <th>Financial Accounting</th>
+            <th>Business Statistic</th>
+            <th>Total</th>
+            <th>Percentage</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody id="studentData"></tbody>
+      </table>
     </section>
     <script>
       const sName = document.getElementById("sname");
@@ -44,20 +67,48 @@
       let SubjectsMarks = [];
       function store() {
         const studentName = sName.value;
-        const dsaMark = dsa.value;
-        const mpMark = mp.value;
-        const webMark = web.value;
-        const faMark = fa.value;
-        const bsMark = bs.value;
+        const dsaMark = Number(dsa.value);
+        const mpMark = Number(mp.value);
+        const webMark = Number(web.value);
+        const faMark = Number(fa.value);
+        const bsMark = Number(bs.value);
         StudentName.push(studentName);
-        SubjectsMarks.push();
-        SubjectsMarks.push({ dsaMark, mpMark, webMark, faMark, bsMark });
+        SubjectsMarks.push([dsaMark, mpMark, webMark, faMark, bsMark]);
         document.getElementById("studentDatas").reset();
-        // document
-        //   .querySelectorAll("#sname,#dsa, #mp, #web, #fa, #bs ")
-        //   .forEach((input) => {
-        //     input.value = "";
-        //   });
+      }
+
+      function grade(percentage) {
+        if (percentage >= 80) return "A";
+        else if (percentage >= 70) return "B";
+        else if (percentage >= 60) return "C";
+        else return "D";
+      }
+
+      const tbodyEL = document.getElementById("studentData");
+
+      function display() {
+        for (let i = 0; i < SubjectsMarks.length; i++) {
+          const total = SubjectsMarks[i].reduce((a, b) => a + b, 0);
+          const percentage = (total / (SubjectsMarks[i].length * 100)) * 100;
+          const rowData = [
+            StudentName[i],
+            SubjectsMarks[i][0],
+            SubjectsMarks[i][1],
+            SubjectsMarks[i][2],
+            SubjectsMarks[i][3],
+            SubjectsMarks[i][4],
+            total,
+            percentage.toFixed(2),
+            grade(percentage),
+          ];
+          const tr = document.createElement("tr");
+          for (let data of rowData) {
+            const td = document.createElement("td");
+            td.textContent = data;
+            tr.appendChild(td);
+          }
+          tbodyEL.appendChild(tr);
+        }
       }
     </script>
   </body>
