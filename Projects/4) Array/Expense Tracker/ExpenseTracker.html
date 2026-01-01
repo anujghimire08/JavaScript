@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+  </head>
+  <body>
+    <h1>Expense Tracker</h1>
+    <input type="text" id="expenseName" placeholder="Expense Name" />
+    <input type="number" id="expenseCost" placeholder="Expense Price" min="0" />
+    <button onclick="addExpense()">Add Expense</button>
+    <button onclick="display()">Show Expense List</button>
+    <button onclick="totalExpense()">Total Expense</button>
+    <ol id="result"></ol>
+    <h3>Total Expenses : <span id="total"></span></h3>
+    <script>
+      const expenseList = [];
+      function addExpense() {
+        const expenseName = document.getElementById("expenseName").value;
+        const expenseCost = Number(
+          document.getElementById("expenseCost").value
+        );
+        if (expenseName === null || expenseCost <= 0) {
+          alert("please enter valid information!");
+          return;
+        }
+        expenseList.push({ expenseName, expenseCost });
+        document.getElementById("expenseName").value = "";
+        document.getElementById("expenseCost").value = "";
+      }
+      function display() {
+        const result = document.getElementById("result");
+        result.innerHTML = "";
+        expenseList.forEach((value) => {
+          const li = document.createElement("li");
+          li.textContent = `${value.expenseName} - ${value.expenseCost}`;
+          result.appendChild(li);
+        });
+      }
+      function totalExpense() {
+        let total = 0;
+        expenseList.forEach((value) => {
+          total += value.expenseCost;
+        });
+        document.getElementById("total").textContent = `${total}`;
+      }
+    </script>
+  </body>
+</html>
