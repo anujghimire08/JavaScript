@@ -17,11 +17,11 @@
     <script>
       const expenseList = [];
       function addExpense() {
-        const expenseName = document.getElementById("expenseName").value;
+        const expenseName = document.getElementById("expenseName").value.trim();
         const expenseCost = Number(
           document.getElementById("expenseCost").value
         );
-        if (expenseName === null || expenseCost <= 0) {
+        if (expenseName === "" || expenseCost <= 0) {
           alert("please enter valid information!");
           return;
         }
