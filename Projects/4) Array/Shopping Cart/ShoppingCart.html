@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+  </head>
+  <body>
+    <h1>🛍️Shopping Cart</h1>
+    <input
+      type="text"
+      name="product-name"
+      id="product-name"
+      placeholder="Product Name"
+      required
+    />
+    <input
+      type="number"
+      name="product-quantity"
+      id="product-quantity"
+      placeholder="Product Quantity"
+      min="1"
+    />
+    <input
+      type="number"
+      value="product-price"
+      id="product-price"
+      placeholder="Product Price"
+      min="1"
+    />
+    <button onclick="addCart()">Add to cart</button>
+    <h4 id="message"></h4>
+    <script src="ShoppingCart.js"></script>
+  </body>
+</html>
