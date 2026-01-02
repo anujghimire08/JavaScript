@@ -34,7 +34,7 @@
         result.innerHTML = "";
         expenseList.forEach((value) => {
           const li = document.createElement("li");
-          li.textContent = `${value.expenseName} - ${value.expenseCost}`;
+          li.textContent = `${value.expenseName} - Rs.${value.expenseCost}`;
           result.appendChild(li);
         });
       }
@@ -43,7 +43,7 @@
         expenseList.forEach((value) => {
           total += value.expenseCost;
         });
-        document.getElementById("total").textContent = `${total}`;
+        document.getElementById("total").textContent = `Rs.${total}`;
       }
     </script>
   </body>
