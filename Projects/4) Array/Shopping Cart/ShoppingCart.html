@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping Cart</title>
+    <style>
+      body {
+        display: grid;
+        place-content: center;
+      }
+      li {
+        font-style: italic;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <h1>🛍️Shopping Cart</h1>
@@ -14,6 +25,7 @@
       placeholder="Product Name"
       required
     />
+    <br />
     <input
       type="number"
       name="product-quantity"
@@ -21,15 +33,24 @@
       placeholder="Product Quantity"
       min="1"
     />
+    <br />
     <input
       type="number"
-      value="product-price"
       id="product-price"
       placeholder="Product Price"
       min="1"
     />
+    <br />
     <button onclick="addCart()">Add to cart</button>
-    <h4 id="message"></h4>
+    <br />
+    <button onclick="display()">Show List</button>
+    <br /><br />
+    <fieldset>
+      <legend>Your Cart List</legend>
+      <ol id="list"></ol>
+      <h3>Total Price: <span id="total"></span></h3>
+      <h4 id="message"></h4>
+    </fieldset>
     <script src="ShoppingCart.js"></script>
   </body>
 </html>
