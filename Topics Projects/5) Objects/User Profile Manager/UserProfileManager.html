@@ -7,13 +7,31 @@
   </head>
   <body>
     <h1>👨🏻‍💼User Profile Manager</h1>
-    <input type="text" placeholder="username" />
-    <input type="email" placeholder="email" />
-    <input type="password" placeholder="password" />
-    <input type="button" value="Add users" />
-    <input type="button" value="View users" />
-    <input type="button" value="Update user details" />
-    <input type="button" value="Delete users" />
-    <input type="button" value="Search users" />
+    <input type="text" placeholder="Username" id="user" required />
+    <input type="email" placeholder="Email" id="email" required />
+    <input type="number" placeholder="Age" id="age" required />
+    <input type="button" value="Add users" id="add-user" onclick="add()" />
+    <input
+      type="button"
+      value="View users"
+      id="view-user"
+      onclick="display()"
+    />
+    <!-- <input type="button" value="Update user details" id="update-user" /> -->
+    <input
+      type="button"
+      value="Delete users"
+      id="delete-user"
+      onclick="remove()"
+    />
+    <input
+      type="button"
+      value="Search users"
+      id="search-user"
+      onclick="search()"
+    />
+    <br /><br />
+    <div id="resultList"></div>
+    <script src="UserProfileManager.js"></script>
   </body>
 </html>
