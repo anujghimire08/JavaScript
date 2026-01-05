@@ -39,3 +39,17 @@ function display() {
   });
 }
 
+function remove() {
+  const idx = users.findIndex((u) => u.name === usernameEL.value);
+  if (idx === -1) {
+    alert("User Not Found!");
+    return;
+  }
+  users.splice(idx, 1);
+  alert("User Removed");
+  display();
+  document.querySelectorAll("#user,#email,#age").forEach((v) => {
+    v.value = "";
+  });
+}
+
