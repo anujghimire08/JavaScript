@@ -32,6 +32,7 @@ const DisplayBook = document.getElementById("display-book");
 const IssueBook = document.getElementById("issue-book");
 const ReturnBook = document.getElementById("return-book");
 const listTable = document.getElementById("table");
+const tbody = document.getElementById("tbody");
 
 const bookNameEL = document.getElementById("name");
 const bookAuthorEL = document.getElementById("author");
@@ -51,64 +52,93 @@ AddBook.onclick = () => {
     return;
   }
   Library.push({ id, title, author, isIssued: false });
-  hide();
   refreshInput();
   renderTable();
+  hide();
 };
 
 DisplayBook.onclick = () => {
-  document.getElementById("table").style.display = "block";
   refreshInput();
   renderTable();
+  unhide();
 };
 
 IssueBook.onclick = () => {
   const title = bookNameEL.value;
   const author = bookAuthorEL.value;
   const id = parseInt(bookIdEL.value);
-  Library.forEach((list, idx) => {
+  Library.forEach((list) => {
     if (list.title === title || list.author === author || list.id === id) {
       list.isIssued = true;
+      // list.forEach((obj) => {
+      //   for (let key in obj) {
+      //     obj[key].style.textDecoration = "line-through";
+      //   }
+      // });
     }
   });
   hide();
   refreshInput();
   renderTable();
+  setInterval(() => {
+    unhide();
+  }, 900);
 };
 
 ReturnBook.onclick = () => {
   const title = bookNameEL.value;
   const author = bookAuthorEL.value;
   const id = parseInt(bookIdEL.value);
-  Library.forEach((list, idx) => {
+  Library.forEach((list) => {
     if (list.title === title || list.author === author || list.id === id) {
       list.isIssued = false;
+      // list.forEach((obj) => {
+      //   for (let key in obj) {
+      //     obj[key].style.textDecoration = "line-through";
+      //   }
+      // });
     }
   });
+  hide();
   refreshInput();
   renderTable();
+  setInterval(() => {
+    unhide();
+  }, 900);
 };
 
 function refreshInput() {
   document.querySelectorAll(".input").forEach((ip) => {
     ip.value = "";
   });
-  listTable.innerHTML = "";
+  tbody.innerHTML = "";
 }
 
 function renderTable() {
+  tbody.innerHTML = "";
   Library.forEach((list) => {
     const tr = document.createElement("tr");
+    if (list.isIssued) {
+      tr.style.textDecoration = "line-through";
+      tr.style.color = "grey";
+    }
     tr.innerHTML = `
         <td>${list.id}</td>
         <td>${list.title}</td>
         <td>${list.author}</td>
         <td>${list.isIssued ? "Issued" : "Available"}</td>
     `;
-    listTable.appendChild(tr);
+    tbody.appendChild(tr);
   });
 }
 
 function hide() {
-  document.getElementById("table").style.display = "none";
+  listTable.style.display = "none";
 }
+hide();
+function unhide() {
+  listTable.style.display = "block";
+}
+
+function check() {}
+check();
