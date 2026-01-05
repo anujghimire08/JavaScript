@@ -53,3 +53,20 @@ function remove() {
   });
 }
 
+function search() {
+  let name = usernameEL.value.toLowerCase().trim();
+  const foundUser = users.filter((n) => n.name.toLowerCase().includes(name));
+  if (foundUser.length === 0) {
+    alert("No User Found");
+  } else {
+    alert("User Found");
+  }
+  foundUser.forEach((list) => {
+    const em = document.createElement("em");
+    em.textContent = `${list.name} - ${list.email} - ${list.age}`;
+    resultList.appendChild(em);
+  });
+  document.querySelectorAll("#user,#email,#age").forEach((v) => {
+    v.value = "";
+  });
+}
