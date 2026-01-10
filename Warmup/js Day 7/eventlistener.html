@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ad event listener</title>
+  </head>
+  <body>
+    <input type="text" name="input" id="input" />
+    <p id="result"></p>
+    <button id="reset">Reset</button>
+    <script>
+      const input = document.getElementById("input");
+      const result = document.getElementById("result");
+      const reset = document.getElementById("reset");
+
+      input.addEventListener("input", () => {
+        result.textContent = input.value.length;
+      });
+
+      reset.addEventListener("click", () => {
+        reset.style.backgroundColor = "red";
+        reset.style.border = "1px solid black";
+        input.value = "";
+        result.innerText = "";
+      });
+    </script>
+  </body>
+</html>
