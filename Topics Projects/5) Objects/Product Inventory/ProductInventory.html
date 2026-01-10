@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Inventory Manager</title>
+  </head>
+  <body>
+    <h1>📦 Product Inventory Manager</h1>
+
+    <input type="text" placeholder="Product Name" id="productName" />
+    <input type="number" placeholder="Price" id="price" />
+    <input type="number" placeholder="Quantity" id="quantity" />
+
+    <input type="button" value="Add Product" onclick="addProduct()" />
+    <input type="button" value="View Inventory" onclick="displayProducts()" />
+    <input type="button" value="Delete Product" onclick="removeProduct()" />
+    <input type="button" value="Search Product" onclick="searchProduct()" />
+
+    <br /><br />
+    <div id="resultList"></div>
+
+    <script src="ProductInventory.js"></script>
+  </body>
+</html>
