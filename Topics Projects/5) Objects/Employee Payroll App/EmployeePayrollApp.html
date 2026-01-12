@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Payroll Manager</title>
+  </head>
+  <body>
+    <h1>👨🏻Employee Payroll Manager</h1>
+
+    <input type="text" placeholder="Employee Name" id="name" required />
+    <input type="text" placeholder="Position" id="position" required />
+    <input type="number" placeholder="Salary" id="salary" required />
+
+    <input type="button" value="Add Employee" onclick="addEmployee()" />
+    <input type="button" value="View Employees" onclick="displayEmployees()" />
+    <input type="button" value="Delete Employee" onclick="removeEmployee()" />
+    <input type="button" value="Search Employee" onclick="searchEmployee()" />
+
+    <br /><br />
+    <div id="resultList"></div>
+
+    <script src="EmployeePayrollApp.js"></script>
+  </body>
+</html>
