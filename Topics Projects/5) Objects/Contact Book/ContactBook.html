@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Book</title>
+  </head>
+  <body>
+    <h1>☎️ Contact Book 📞</h1>
+
+    <input type="text" placeholder="Name" id="contactName" />
+    <input type="text" placeholder="Phone" id="contactPhone" />
+    <input type="email" placeholder="Email" id="contactEmail" />
+
+    <input type="button" value="Add Contact" onclick="addContact()" />
+    <input type="button" value="View Contacts" onclick="displayContacts()" />
+    <input type="button" value="Delete Contact" onclick="deleteContact()" />
+    <input type="button" value="Search Contact" onclick="searchContact()" />
+
+    <br /><br />
+    <div id="resultList"></div>
+
+    <script src="ContactBook.js"></script>
+  </body>
+</html>
