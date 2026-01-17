@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact Book</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #b5b3b3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Layout */
+      .wrapper {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      /* Left controls */
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .controls button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      /* Profile card */
+      .card-stack {
+        position: relative;
+        width: 360px;
+        height: 240px;
+      }
+
+      .card {
+        position: absolute;
+        inset: 0;
+        background: white;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      /* Top card */
+      .card-stack .card:nth-child(1) {
+        z-index: 3;
+      }
+
+      /* Middle card */
+      .card-stack .card:nth-child(2) {
+        z-index: 2;
+        transform: translateY(12px) scale(0.97);
+        opacity: 0.85;
+      }
+
+      /* Back card */
+      .card-stack .card:nth-child(3) {
+        z-index: 1;
+        transform: translateY(24px) scale(0.94);
+        opacity: 0.65;
+      }
+
+      .header {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-image: url(https://i.pinimg.com/1200x/20/62/49/2062496223513ff6677c4a12698a0a7a.jpg);
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 16px 0;
+        font-size: 14px;
+        color: #555;
+        gap: 8px;
+      }
+      .info > div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .call {
+        background: black;
+        color: white;
+        border-radius: 20px;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .msg {
+        background: #eee;
+        border-radius: 20px;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+      }
+
+      .form-card {
+        width: 360px;
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .form-card h3 {
+        margin-bottom: 15px;
+      }
+
+      label {
+        font-size: 13px;
+        color: #555;
+        margin-top: 12px;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+      }
+
+      .categories {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        width: fit-content;
+        padding: 6px 10px;
+        font-size: 14px;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+
+      .emergency {
+        border: 2px solid #ff6b6b;
+        color: #ff6b6b;
+      }
+      .important {
+        border: 2px solid #f7b731;
+        color: #f7b731;
+      }
+      .urgent {
+        border: 2px solid #6c5ce7;
+        color: #6c5ce7;
+      }
+      .norush {
+        border: 2px solid #aaa;
+        color: #555;
+      }
+
+      .pill input {
+        accent-color: currentColor;
+      }
+
+      /* Buttons */
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 20px;
+        border: none;
+        margin-top: 12px;
+        cursor: pointer;
+      }
+
+      .create {
+        background: black;
+        color: white;
+      }
+
+      .close {
+        background: #ff4d4d;
+        color: white;
+      }
+
+      /* Right category buttons */
+      .category-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 20px; /* spacing from card stack */
+      }
+
+      .category-buttons button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Specific colors for categories */
+      .category-buttons .emergency {
+        background: #ff6b6b;
+      }
+      .category-buttons .important {
+        background: #f7b731;
+      }
+      .category-buttons .urgent {
+        background: #6c5ce7;
+      }
+      .category-buttons .norush {
+        background: #aaa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Left Buttons -->
+      <div class="controls">
+        <button id="add-note"><i class="ri-add-circle-fill"></i></button>
+        <button><i class="ri-arrow-up-circle-fill"></i></button>
+        <button><i class="ri-arrow-down-circle-fill"></i></button>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="card-stack"></div>
+    </div>
+
+    <!-- FORM MODAL -->
+    <div class="modal" id="modal">
+      <form class="form-card">
+        <h3>New Call</h3>
+
+        <label>Image URL</label>
+        <input
+          type="text"
+          placeholder="https://example.com/photo.jpg"
+          accept="image/*"
+          required
+          id="image"
+        />
+
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter full name" id="name" required />
+
+        <label>Home Town</label>
+        <input
+          type="text"
+          placeholder="Enter home town"
+          id="hometown"
+          required
+        />
+
+        <label>Purpose</label>
+        <input
+          type="text"
+          placeholder="e.g. Quick appointment note"
+          id="purpose"
+          required
+        />
+
+        <label>Category</label>
+        <div id="categories">
+          <label class="pill emergency" name="categories"
+            ><input type="radio" name="categories" value="emergency" />
+            Emergency</label
+          >
+          <label class="pill important">
+            <input type="radio" name="categories" value="important" />
+            Important</label
+          >
+          <label class="pill urgent"
+            ><input type="radio" name="categories" value="urgent" />
+            Urgent</label
+          >
+          <label class="pill norush"
+            ><input type="radio" name="categories" value="norush" /> No
+            Rush</label
+          >
+        </div>
+
+        <input type="submit" class="btn create" value="Create Note" />
+        <button class="btn close">Close</button>
+      </form>
+    </div>
+
+    <!-- Right Category Buttons -->
+    <div class="category-buttons">
+      <button class="emergency"><i class="ri-flashlight-fill"></i></button>
+      <button class="important"><i class="ri-star-fill"></i></button>
+      <button class="urgent"><i class="ri-alert-fill"></i></button>
+      <button class="norush"><i class="ri-time-fill"></i></button>
+    </div>
+
+    <script src="x.js"></script>
+  </body>
+</html>
