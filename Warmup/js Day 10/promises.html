@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <h2>promises, async / await</h2>
+  <body>
+    <script>
+      let pr = new Promise(function (res, rej) {
+        setTimeout(() => {
+          Math.random() > 0.5 ? res("resolved") : rej("rejected");
+        }, 2000);
+      });
+
+      async function test() {
+        try {
+          let val = await pr;
+          console.log(val);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      test();
+
+      // pr.then(function (val) {
+      //   console.log(val);
+      // });
+      // pr.catch(function (val) {
+      //   console.log(val);
+      // });
+    </script>
+  </body>
+</html>
