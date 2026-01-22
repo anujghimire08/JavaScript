@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🍿 Movie Search</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #0d1525;
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .container {
+        width: 600px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .search-box {
+        margin-bottom: 25px;
+      }
+      .input-section {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .search-box input {
+        padding: 10px;
+        width: 70%;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+      }
+
+      .search-box button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #57bde9;
+        color: black;
+        font-weight: 600;
+      }
+
+      .search-box button:active {
+        transform: scale(0.98);
+      }
+      .movie-card {
+        width: 650px;
+        background-color: #1e293b;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        gap: 20px;
+      }
+
+      .movie-card img {
+        width: 200px;
+        border-radius: 10px;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      #info-box {
+        display: none;
+      }
+      .movie-info {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .movie-info h2 {
+        margin-bottom: 10px;
+      }
+
+      .movie-info p {
+        margin: 6px 0;
+      }
+
+      .plot {
+        margin-top: 10px;
+        line-height: 1.4;
+        color: #cbd5f5;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="search-box">
+        <h1>🎬 Movie Search</h1>
+        <div class="input-section">
+          <input
+            type="text"
+            id="movieInput"
+            placeholder="Enter movie name..."
+          />
+          <button id="searchBtn">Search</button>
+        </div>
+      </div>
+      <div id="info-box"></div>
+    </div>
+    <script src="movieSearch.js"></script>
+  </body>
+</html>
