@@ -26,7 +26,7 @@ formEL.addEventListener("submit", (event) => {
   }
   NoteStore.push({ noteTitle, noteSubject, noteContent, id: Date.now() });
   localStorage.setItem("notes", JSON.stringify(NoteStore));
-  renderUI();
+  userFilter();
   formEL.reset();
 });
 
@@ -69,28 +69,28 @@ renderUI();
 
 // user lai chaiyeko sub ko data matra display
 subjectFilter.addEventListener("change", () => {
-  function userFilter() {
-    if (subjectFilter.value === "all") {
-      renderUI(NoteStore);
-    } else {
-      let filtered = NoteStore.filter((note) => {
-        return note.noteSubject === subjectFilter.value;
-      });
-      if (filtered.length === 0) {
-        document.querySelector(".notes-list").innerHTML =
-          `<h3>No Notes Found!</h3>`;
-      } else {
-        renderUI(filtered);
-      }
-    }
-  }
   userFilter();
 });
+
+function userFilter() {
+  if (subjectFilter.value === "all") {
+    renderUI(NoteStore);
+  } else {
+    let filtered = NoteStore.filter((note) => {
+      return note.noteSubject === subjectFilter.value;
+    });
+    if (filtered.length === 0) {
+      noteList.innerHTML =`<h3>No Notes Found!</h3>`;
+    } else {
+      renderUI(filtered);
+    }
+  }
+}
 
 // user lai nachaiyeko sub ko notes matra delete
 function deleteNotes(id) {
   NoteStore = NoteStore.filter((note) => note.id !== id);
 
   localStorage.setItem("notes", JSON.stringify(NoteStore));
-  renderUI(NoteStore);
+  userFilter();
 }
