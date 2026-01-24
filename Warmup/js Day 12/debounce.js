@@ -1,3 +1,5 @@
+// debounce - limiting the invocation of a function
+
 const input = document.getElementById("xyz");
 
 function debounce(fnc, delay) {
