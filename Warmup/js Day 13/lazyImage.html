@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAZY IMage Loading</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 4rem;
+        border: 2px solid black;
+        border-radius: 50px;
+        padding: 1rem;
+      }
+      p {
+        font-size: 2rem;
+      }
+      div {
+        height: 100vh;
+      }
+      .null-page {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        filter: blur(10px);
+        transition:
+          opacity 0.6s ease-in,
+          blur 0.6s ease-in;
+      }
+      .image-load {
+        opacity: 1;
+        filter: blur(0px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="null-page">
+      <h1>Lazy Image Loading Intersection</h1>
+      <p>👇scroll to load images</p>
+    </div>
+    <img
+      data-src="https://i.pinimg.com/1200x/da/8c/5d/da8c5d929e51b1944ec593ed839cbcee.jpg"
+      alt="f1"
+    />
+    <div class="null-page"></div>
+    <div class="image">
+      <img
+        data-src="https://i.pinimg.com/1200x/4f/ef/29/4fef29f61e2db2df4359bded1de9e648.jpg"
+        alt=""
+      />
+    </div>
+    <div class="null-page"></div>
+    <div class="image">
+      <img
+        data-src="https://i.pinimg.com/736x/92/b9/d6/92b9d67d95b7ad0f43e1f6da2e88a159.jpg"
+        alt=""
+      />
+    </div>
+    <div class="null-page"></div>
+    <div class="image">
+      <img
+        data-src="https://i.pinimg.com/1200x/58/6a/37/586a3758bdbbd8d40ee48fe4035ef7b4.jpg"
+        alt=""
+      />
+    </div>
+    <div class="null-page"></div>
+    <script src="lazyImage.js"></script>
+  </body>
+</html>
