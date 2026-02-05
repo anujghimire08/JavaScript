@@ -8,3 +8,5 @@ for (let i = 0; i < 100; i++) {
 }
 
 ul.appendChild(space);
+// <h1>Layout Thrashing(reflows/ repaints)</h1>
+// <i>ways of avoiding layout thrashing</i>
