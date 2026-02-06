@@ -56,11 +56,14 @@ main section .bottom {
   padding: var(--padding-2xl);
   aspect-ratio: 5/3;
   border-radius: var(--border-radius-xl);
+  display: flex;
+  justify-content: center;
 }
 main section .bottom .placeholder-img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   opacity: 0.6;
   gap: var(--gutter-md);
 }
@@ -88,6 +91,11 @@ main section .right .filter {
 main section .right .filter {
   width: 100%;
 }
+main section p,
+h2,
+.btn {
+  user-select: none;
+}
 main section .right .filter input {
   width: 100%;
   outline: none;
@@ -111,4 +119,15 @@ main section .right .filters .filter input::-webkit-slider-thumb {
   border-radius: 50%;
   background-color: red;
   margin-top: -8.5px;
+}
+canvas {
+  max-width: 600px;
+  max-height: 600px;
+  display: none;
+}
+.preset-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
 }
