@@ -17,7 +17,7 @@ const imageInput = document.querySelector("#image-input");
 let file = null;
 let image = null;
 
-function createFilterEl(name, value, min, max) {
+function createFilterEl(name, unit, value, min, max) {
   const div = document.createElement("div");
   div.classList.add("filters");
 
